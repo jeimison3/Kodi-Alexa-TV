@@ -1,0 +1,4 @@
+__pycache__/*
+*/__pycache__/*
+config/credentials.py
+sinricpro_logfile.log
