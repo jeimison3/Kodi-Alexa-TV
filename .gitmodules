@@ -1,6 +1,3 @@
-[submodule "lib/sinricprolib"]
-	path = lib/sinricprolib
-	url = https://github.com/sinricpro/python-sdk.git
 [submodule "lib/SinricProPyOO"]
 	path = lib/SinricProPyOO
 	url = https://github.com/jeimison3/SinricProPyOO.git

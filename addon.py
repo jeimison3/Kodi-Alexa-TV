@@ -20,6 +20,9 @@ def mPrint(msg):
     else:
         print >> sys.stderr, msg
 
+def Notificar(msg):
+    xbmc.executebuiltin("xbmc.Notification(Rasperry TV Alexa, %s)" % msg)
+
 def instalar_programas():
     ret = subprocess.call('sudo apt-get install python3-pip python3-websockets && pip3 install sinricpro', shell=True)
     mPrint("ADDON> Pacotes r=%s" % str(ret))
@@ -34,6 +37,8 @@ def lancar_servico():
     # os.system('python3 servico.py %d' % os.getpid())
 
 if __name__ == '__main__':
+    Notificar("Iniciando servico.")
+
     mPrint("Script atual: %s | CWD= %s\n" % (os.path.abspath(__file__), os.path.abspath(os.getcwd())))
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
@@ -42,13 +47,14 @@ if __name__ == '__main__':
     sock.bind(server_address)
 
     lancar_servico()
+    Notificar("Iniciado.")
     mPrint("ADDON> Servico pronto.")
 
     sock.listen(1) 
     while True:
         connection, client_address = sock.accept()
         try:
-            mPrint('ADDON> Conexao: %s' % str(client_address))
+            # mPrint('ADDON> Conexao: %s' % str(client_address))
             data = connection.recv(1024)
             if not data:
                 mPrint("ADDON> ERR")
@@ -57,6 +63,6 @@ if __name__ == '__main__':
                 if "xbmc." in str(data):
                     xbmc.executebuiltin(data)
         finally:
-            mPrint("ADDON> FINAL")
+            # mPrint("ADDON> FINAL")
             # Clean up the connection
             connection.close()
