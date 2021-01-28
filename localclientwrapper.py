@@ -1,5 +1,4 @@
-from lib import SinricPro, SinricProUdp
-from SinricProPyOO.classes.things import Thing
+from lib import TV, Thing, SinricPro, SinricProUdp
 
 class ClientWrapper:
     """ ClientWrapper for comunicate classes and things.\n
@@ -29,8 +28,10 @@ class ClientWrapper:
         if len(self.events) > 0:
             for key, receivers in self.events.items():
                 callbs[key] = lambda dev_id, *arg, recv=receivers: self.run_match_dev_id(dev_id,recv,locals()['arg'])
-        
         self.client = SinricPro(self.appKey, self.deviceIdArr, callbs, event_callbacks=self.eventsCallbacks, enable_log=False,restore_states=True,secretKey=self.secretKey)
+        
+        for devId in self.deviceIdArr:
+            self.client.event_handler.raiseEvent(devId, 'setPowerState',data={'state': 'On'})
         
         # Instantiate client (setup connections)
         udp_client = SinricProUdp(callbs, self.deviceIdArr,enable_trace=False)  # Set it to True to start logging request Offline Request/Response
@@ -57,8 +58,16 @@ class ClientWrapper:
 
 
 
+    def Events():
+        pass
+        # print("Evento.")
+        # while True:
+            # client.event_handler.raiseEvent(device1, 'setPowerState',data={'state': 'On'})
+            # client.event_handler.raiseEvent(device1, 'setPowerLevel',data={'powerLevel': '95%'})
+            #sleep(2)
+            # pass
 
     eventsCallbacks={
-        "Events": None
+        "Events": Events
     }
         
