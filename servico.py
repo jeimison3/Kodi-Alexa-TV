@@ -51,6 +51,8 @@ tvMuted = False
 
 def tv_powerState(arg):
     check_alive()
+    if arg[0] == "Off":
+        envia_msg('xbmc.Shutdown')
     print("SERVICE> tv_powerState=",arg)
     return True,arg[0]
 
@@ -58,15 +60,9 @@ def tv_setVolume(arg):
     check_alive()
     envia_msg('xbmc.SetVolume(%d, true)' % arg[0])
     # xbmc.executebuiltin()
-    print("SERVICE> tv_setVolume=",arg)
+    print("SERVICE> tv_[set/adjust]Volume=",arg)
     return True, arg[0]
     
-def tv_adjustVolume(arg):
-    check_alive()
-    envia_msg('ALEXA: Recebido (VOL): %s' % str(arg[0]))
-    print("SERVICE> tv_adjustVolume=",arg)
-    return True, arg[0]
-
 def tv_setMute(arg):
     check_alive()
     global tvMuted
@@ -74,7 +70,6 @@ def tv_setMute(arg):
         envia_msg('xbmc.Mute')
         # xbmc.executebuiltin('xbmc.Mute')
         tvMuted = arg[0]
-
     print("SERVICE> tv_setMute=",arg)
     return True, arg[0]
 
@@ -134,7 +129,7 @@ if __name__ == '__main__':
     tv = TV(myTv)
     tv.powerState(tv_powerState)
     tv.setVolume(tv_setVolume)
-    tv.adjustVolume(tv_adjustVolume)
+    tv.adjustVolume(tv_setVolume)
     tv.setMute(tv_setMute)
     tv.mediaControl(tv_mediaControl)
     tv.selectInput(tv_selectInput)

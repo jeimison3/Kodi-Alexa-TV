@@ -1,7 +1,3 @@
 [submodule "lib/SinricProPyOO"]
 	path = lib/SinricProPyOO
 	url = https://github.com/jeimison3/SinricProPyOO.git
-[submodule "lib/asyncio"]
-	path = lib/asyncio
-	url = https://github.com/python/asyncio.git
-	branch = master

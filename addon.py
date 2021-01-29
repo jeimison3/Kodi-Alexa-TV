@@ -24,7 +24,11 @@ def Notificar(msg):
     xbmc.executebuiltin("xbmc.Notification(Rasperry TV Alexa, %s)" % msg)
 
 def instalar_programas():
-    ret = subprocess.call('sudo apt-get install python3-pip python3-websockets && pip3 install sinricpro', shell=True)
+    ret = 0
+    if not os.path.isfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "__FLAG_SETUP")):
+        ret = subprocess.call('sudo apt-get install python3-pip python3-websockets && pip3 install sinricpro', shell=True)
+        f = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "__FLAG_SETUP"), "w")
+        f.close()
     mPrint("ADDON> Pacotes r=%s" % str(ret))
 
 def lancar_servico():
