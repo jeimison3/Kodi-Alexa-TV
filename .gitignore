@@ -5,3 +5,4 @@ sinricpro_logfile.log
 build/
 *.pyc
 .vscode/
+__FLAG_SETUP

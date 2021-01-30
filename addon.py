@@ -1,46 +1,42 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 '''
     Envia comandos ao XBMC. 
 '''
-# sudo apt-get install python3-websockets
-# sudo apt-get install python3-pip
-# 
 
+from importlib import util
 import threading
 import subprocess
 import socket
 import sys
 import os
 
-import xbmc
+os.chdir( os.path.join(os.path.dirname(os.path.abspath(__file__))) )
+xbmc_path = util.find_spec("xbmc")
+if xbmc_path:
+    import xbmc
+
 
 def mPrint(msg):
-    if xbmc:
-        xbmc.log(msg, level=xbmc.LOGNOTICE)
+    if xbmc_path:
+        xbmc.log(msg, level=xbmc.LOGINFO)
     else:
-        print >> sys.stderr, msg
+        print(msg)#, io sys.stderr)
 
 def Notificar(msg):
-    xbmc.executebuiltin("xbmc.Notification(Rasperry TV Alexa, %s)" % msg)
+    if xbmc_path:
+        xbmc.executebuiltin("xbmc.Notification(Rasperry TV Alexa, %s)" % msg)
 
-def instalar_programas():
-    ret = 0
-    if not os.path.isfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "__FLAG_SETUP")):
-        ret = subprocess.call('sudo apt-get install python3-pip python3-websockets && pip3 install sinricpro', shell=True)
-        f = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "__FLAG_SETUP"), "w")
-        f.close()
-    mPrint("ADDON> Pacotes r=%s" % str(ret))
 
 def lancar_servico():
-    instalar_programas()
     t1 = threading.Thread(
         target= lambda: subprocess.call('python3 servico.py %d' % os.getpid(), shell=True, cwd=os.path.dirname(os.path.abspath(__file__)))
     )
     t1.start()
-    mPrint("ADDON> Servico lancado.")
-    # os.system('python3 servico.py %d' % os.getpid())
 
 if __name__ == '__main__':
+    if xbmc_path:
+        mPrint("XBMC= %s" % str(xbmc_path))
+        
     Notificar("Iniciando servico.")
 
     mPrint("Script atual: %s | CWD= %s\n" % (os.path.abspath(__file__), os.path.abspath(os.getcwd())))

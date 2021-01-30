@@ -3,13 +3,15 @@
     Recebe comandos da Alexa.
     Repassa ao servidor do Addon.
 '''
-# sudo apt-get install python3-websockets
-# sudo apt-get install python3-pip
-#
 
 import socket
 import sys
 import os
+
+os.chdir( os.path.join(os.path.dirname(os.path.abspath(__file__))) )
+sys.path.append( os.path.join("lib", "websockets-8.1", "src") ) # https://pypi.org/project/websockets/#files
+sys.path.append( os.path.join("lib", "loguru") )
+sys.path.append( os.path.join("lib", "sinricprosdk") )
 
 from localclientwrapper import ClientWrapper
 from lib import TV

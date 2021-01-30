@@ -1,5 +1,5 @@
 # Raspberry-TV-Alexa
-Integration between Alexa Home Assistant and OSMC (Kodi @ Raspberry Pi).
+Integration between Alexa Home Assistant and LibreELEC (Kodi 19 @ Raspberry Pi).
 
 Just configure your `config/credentials.py`.
 

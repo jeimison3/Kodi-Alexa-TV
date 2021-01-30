@@ -7,7 +7,7 @@ src_dir = "."
 build_dir = "build"
 addon_name = "service.raspberrytv.alexa.sinricpro"
 ignore = shutil.ignore_patterns(
-    ".*", "enviar.sh", "*.pyc", "build", "tools", "sinricpro_logfile.log", "__pycache__"
+    ".*", "prepare.sh", "enviar.sh", "*.pyc", "build", "tools", "sinricpro_logfile.log", "__pycache__"
 )
 
 # Clean up

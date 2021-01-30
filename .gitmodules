@@ -1,3 +1,9 @@
 [submodule "lib/SinricProPyOO"]
 	path = lib/SinricProPyOO
 	url = https://github.com/jeimison3/SinricProPyOO.git
+[submodule "lib/sinricprosdk"]
+	path = lib/sinricprosdk
+	url = https://github.com/sinricpro/python-sdk.git
+[submodule "lib/loguru"]
+	path = lib/loguru
+	url = https://github.com/Delgan/loguru.git
