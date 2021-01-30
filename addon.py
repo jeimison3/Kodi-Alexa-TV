@@ -20,7 +20,7 @@ def mPrint(msg):
     if xbmc_path:
         xbmc.log(msg, level=xbmc.LOGINFO)
     else:
-        print(msg)#, io sys.stderr)
+        print(msg)
 
 def Notificar(msg):
     if xbmc_path:
@@ -54,15 +54,13 @@ if __name__ == '__main__':
     while True:
         connection, client_address = sock.accept()
         try:
-            # mPrint('ADDON> Conexao: %s' % str(client_address))
             data = connection.recv(1024)
             if not data:
                 mPrint("ADDON> ERR")
             else:
-                mPrint("ADDON> RECV: %s" % str(data))
-                if "xbmc." in str(data):
-                    xbmc.executebuiltin(data)
+                receive = data.decode("utf-8")
+                mPrint("ADDON> RECV: %s" % receive)
+                if "xbmc." in receive:
+                    xbmc.executebuiltin(receive)
         finally:
-            # mPrint("ADDON> FINAL")
-            # Clean up the connection
             connection.close()
