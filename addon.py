@@ -11,9 +11,9 @@ import sys
 import os
 
 os.chdir( os.path.join(os.path.dirname(os.path.abspath(__file__))) )
-xbmc_path = util.find_spec("xbmc")
+xbmc_path = util.find_spec("kodi_six")
 if xbmc_path:
-    import xbmc
+    from kodi_six import xbmc, xbmcaddon, xbmcplugin, xbmcgui
 
 
 def mPrint(msg):
@@ -24,7 +24,7 @@ def mPrint(msg):
 
 def Notificar(msg):
     if xbmc_path:
-        xbmc.executebuiltin("xbmc.Notification(Rasperry TV Alexa, %s)" % msg)
+        xbmc.executebuiltin("Notification(Kodi Alexa TV, %s)" % msg)
 
 
 def lancar_servico():
@@ -41,6 +41,7 @@ if __name__ == '__main__':
 
     mPrint("Script atual: %s | CWD= %s\n" % (os.path.abspath(__file__), os.path.abspath(os.getcwd())))
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     
     server_address = ('localhost', 10001)
     mPrint('ADDON> Iniciando em %s:%s' % server_address)
@@ -60,7 +61,17 @@ if __name__ == '__main__':
             else:
                 receive = data.decode("utf-8")
                 mPrint("ADDON> RECV: %s" % receive)
-                if "xbmc." in receive:
+                # https://codedocs.xyz/AlwinEsch/kodi/class_x_b_m_c_addon_1_1xbmc_1_1_player.html
+                if receive == "Play":
+                    if xbmc.Player().isPlaying():
+                        xbmc.Player().pause()
+                    else:
+                        xbmc.Player().play()
+                elif receive == "Pause":
+                    xbmc.Player().pause()
+                elif receive == "Stop":
+                    xbmc.Player().stop()
+                else:
                     xbmc.executebuiltin(receive)
         finally:
             connection.close()

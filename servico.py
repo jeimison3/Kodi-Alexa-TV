@@ -54,13 +54,13 @@ tvMuted = False
 def tv_powerState(arg):
     check_alive()
     if arg[0] == "Off":
-        envia_msg('xbmc.Shutdown')
+        envia_msg('Shutdown')
     print("SERVICE> tv_powerState=",arg)
     return True,arg[0]
 
 def tv_setVolume(arg):
     check_alive()
-    envia_msg('xbmc.SetVolume(%d, true)' % arg[0])
+    envia_msg('SetVolume(%d, true)' % arg[0])
     # xbmc.executebuiltin()
     print("SERVICE> tv_[set/adjust]Volume=",arg)
     return True, arg[0]
@@ -69,7 +69,7 @@ def tv_setMute(arg):
     check_alive()
     global tvMuted
     if tvMuted != arg[0]:
-        envia_msg('xbmc.Mute')
+        envia_msg('Mute')
         # xbmc.executebuiltin('xbmc.Mute')
         tvMuted = arg[0]
     print("SERVICE> tv_setMute=",arg)
@@ -79,27 +79,27 @@ def tv_mediaControl(arg):
     check_alive()
     # https://kodi.wiki/view/List_of_built-in_functions#Player_built-in.27s
     if str(arg[0]).lower() == "play":
-        envia_msg('xbmc.PlayerControl(Play)')
+        envia_msg('Play')
     elif str(arg[0]).lower() == "pause":
-        envia_msg('xbmc.PlayerControl(Play)')
+        envia_msg('Pause')
     elif str(arg[0]).lower() == "stop":
-        envia_msg('xbmc.PlayerControl(Stop)')
+        envia_msg('Stop')
 
     elif str(arg[0]).lower() == "next":
-        envia_msg('xbmc.PlayerControl(Next)')
+        envia_msg('PlayerControl(Next)')
         # xbmc.executebuiltin('xbmc.PlayerControl(Next)')
     elif str(arg[0]).lower() == "previous":
-        envia_msg('xbmc.PlayerControl(Previous)')
+        envia_msg('PlayerControl(Previous)')
         # xbmc.executebuiltin('xbmc.PlayerControl(Previous)')
 
     elif str(arg[0]).lower() == "forward":
-        envia_msg('xbmc.PlayerControl(Forward)')
+        envia_msg('PlayerControl(Forward)')
         # xbmc.executebuiltin('xbmc.PlayerControl(Forward)')
     elif str(arg[0]).lower() == "rewind":
-        envia_msg('xbmc.PlayerControl(Rewind)')
+        envia_msg('PlayerControl(Rewind)')
         # xbmc.executebuiltin('xbmc.PlayerControl(Rewind)')
-    else:
-        envia_msg('ALEXA: Recebido: %s' % str(arg[0]))
+    # else:
+        # envia_msg('ALEXA: Recebido: %s' % str(arg[0]))
     print("SERVICE> tv_mediaControl=",arg)
     return True, arg[0]
 
@@ -110,7 +110,7 @@ def tv_selectInput(arg):
 
 def tv_changeChannel(arg):
     check_alive()
-    envia_msg('ALEXA: Recebido: %s' % str(arg[0]))
+    # envia_msg('ALEXA: Recebido: %s' % str(arg[0]))
     print("SERVICE> tv_changeChannel=",arg)
     return True, arg[0]
 
