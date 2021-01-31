@@ -7,16 +7,22 @@
 
 Integration between Alexa Home Assistant and LibreELEC (Kodi 19 @ Raspberry Pi).
 
-Just configure your `config/credentials.py` and [build it](#build-zip-with).
-
-- After intalled, reboot Kodi.
-
 ## Disclaimer
 
 This plugin is not officially commissioned/supported by SinricPro.
 It's a community plugin.
 
 Some libraries ported in the final release are under other licenses, they are: Python Websockets, over BSD 3. 
+
+## Installing via .zip
+
+```shell
+git clone --recurse-submodules https://github.com/jeimison3/Kodi-Alexa-TV.git
+```
+
+So, configure your `config/credentials.py` and [build it](#build-zip-with).
+
+- Next, build, intall and reboot your Kodi.
 
 ### Build .zip with:
 ```sh
