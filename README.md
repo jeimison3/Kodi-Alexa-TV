@@ -3,6 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/jeimison3/Kodi-Alexa-TV.svg)](https://github.com/jeimison3/Kodi-Alexa-TV/releases)
 [![Contributors](https://img.shields.io/github/contributors/jeimison3/Kodi-Alexa-TV.svg)](https://github.com/jeimison3/Kodi-Alexa-TV/graphs/contributors)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+[![](https://img.shields.io/badge/author-jeimison3-green.svg)](https://github.com/jeimison3)
 
 Integration between Alexa Home Assistant and LibreELEC (Kodi 19 @ Raspberry Pi).
 
