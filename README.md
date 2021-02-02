@@ -7,12 +7,14 @@
 
 Integration between Alexa Home Assistant and LibreELEC (Kodi 19 @ Raspberry Pi).
 
+Bugs/suggestions on [Kodi Forum](https://forum.kodi.tv/showthread.php?tid=360265).
+
 ## Disclaimer
 
 This plugin is not officially commissioned/supported by SinricPro.
 It's a community plugin.
 
-Some libraries ported in the final release are under other licenses, they are: Python Websockets, over BSD 3. 
+Some libraries ported in the final release are under other licenses, they are: Python Websockets, over BSD 3.
 
 ## Installing via .zip
 Just download a release.
