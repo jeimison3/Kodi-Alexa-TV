@@ -7,7 +7,7 @@ src_dir = "."
 build_dir = "build"
 addon_name = "service.kodi.alexa.tv"
 ignore = shutil.ignore_patterns(
-    ".*", "config", "__FLAG_SETUP", "prepare.sh", "enviar.sh", "*.pyc", "build", "tools", "sinricpro_logfile.log", "__pycache__"
+    ".*", "icon.xcf", "config", "__FLAG_SETUP", "prepare.sh", "enviar.sh", "*.pyc", "build", "tools", "sinricpro_logfile.log", "__pycache__"
 )
 
 # Clean up

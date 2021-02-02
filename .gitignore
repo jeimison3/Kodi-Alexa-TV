@@ -6,3 +6,4 @@ build/
 *.pyc
 .vscode/
 __FLAG_SETUP
+icon.xcf

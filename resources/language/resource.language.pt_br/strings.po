@@ -30,16 +30,16 @@ msgid "TV ID"
 msgstr ""
 
 msgctxt "#32005"
-msgid "Iniciar configuração ( http://(BOARD_IP):51494/alexatv )"
-msgstr ""
+msgid "Start setup ( http://[BOARD_IP]:51494/alexatv )"
+msgstr "Iniciar configuração ( http://[BOARD_IP]:51494/alexatv )"
 
 msgctxt "#32006"
 msgid "Keys ( https://sinric.pro/ )"
 msgstr ""
 
 msgctxt "#32007"
-msgid "Interface de Configuração Web"
-msgstr ""
+msgid "Web Setup Interface"
+msgstr "Interface de Configuração Web"
 
 
 

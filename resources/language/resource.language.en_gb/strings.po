@@ -30,7 +30,7 @@ msgid "TV ID"
 msgstr ""
 
 msgctxt "#32005"
-msgid "Start setup ( http://(BOARD_IP):51494/alexatv )"
+msgid "Start setup ( http://[BOARD_IP]:51494/alexatv )"
 msgstr ""
 
 msgctxt "#32006"
