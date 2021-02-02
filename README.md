@@ -15,16 +15,23 @@ It's a community plugin.
 Some libraries ported in the final release are under other licenses, they are: Python Websockets, over BSD 3. 
 
 ## Installing via .zip
+Just download a release.
 
+## Setup keys
+After installed,
+- Open your browser on `http://(KODI_IP):51494/alexatv`
+- Fill each input with your keys
+- Then press `Save and reboot` button. Kodi will restart.
+
+Important: Create a `Device` on SinricPro Dashboard with type `TV`.
+
+## Building:
 ```shell
 git clone --recurse-submodules https://github.com/jeimison3/Kodi-Alexa-TV.git
 ```
-
-So, configure your `config/credentials.py` and [build it](#build-zip-with).
-
-- Next, build, intall and reboot your Kodi.
+To run on local tests, configure your `config/credentials.py` and run `python3 addon.py`.
 
 ### Build .zip with:
 ```sh
-python tools/build.py
+sh prepare.sh
 ```

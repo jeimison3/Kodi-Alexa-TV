@@ -15,8 +15,8 @@ sys.path.append( os.path.join("lib", "sinricprosdk") )
 
 from localclientwrapper import ClientWrapper
 from lib import TV
-from config.credentials import appKey,secretKey
-from config.credentials import myTv
+# from config.credentials import appKey,secretKey
+# from config.credentials import myTv
 
 
 
@@ -27,7 +27,9 @@ def check_alive():
         print("pid is unassigned")
         exit(1)
 
-
+def printLog(msg):
+    print(msg)
+    envia_msg('LOG: %s' % msg)
 '''
 Funcoes para envio dos comandos para o Addon
 '''
@@ -55,14 +57,14 @@ def tv_powerState(arg):
     check_alive()
     if arg[0] == "Off":
         envia_msg('Shutdown')
-    print("SERVICE> tv_powerState=",arg)
+    printLog("SERVICE> tv_powerState= %s" % str(arg))
     return True,arg[0]
 
 def tv_setVolume(arg):
     check_alive()
     envia_msg('SetVolume(%d, true)' % arg[0])
     # xbmc.executebuiltin()
-    print("SERVICE> tv_[set/adjust]Volume=",arg)
+    printLog("SERVICE> tv_[set/adjust]Volume=%s" % str(arg))
     return True, arg[0]
     
 def tv_setMute(arg):
@@ -72,7 +74,7 @@ def tv_setMute(arg):
         envia_msg('Mute')
         # xbmc.executebuiltin('xbmc.Mute')
         tvMuted = arg[0]
-    print("SERVICE> tv_setMute=",arg)
+    printLog("SERVICE> tv_setMute=%s" % str(arg))
     return True, arg[0]
 
 def tv_mediaControl(arg):
@@ -100,35 +102,35 @@ def tv_mediaControl(arg):
         # xbmc.executebuiltin('xbmc.PlayerControl(Rewind)')
     # else:
         # envia_msg('ALEXA: Recebido: %s' % str(arg[0]))
-    print("SERVICE> tv_mediaControl=",arg)
+    printLog("SERVICE> tv_mediaControl=%s" % str(arg))
     return True, arg[0]
 
 def tv_selectInput(arg):
     check_alive()
-    print("SERVICE> tv_selectInput=",arg)
+    printLog("SERVICE> tv_selectInput=%s" % str(arg))
     return True, arg[0]
 
 def tv_changeChannel(arg):
     check_alive()
     # envia_msg('ALEXA: Recebido: %s' % str(arg[0]))
-    print("SERVICE> tv_changeChannel=",arg)
+    printLog("SERVICE> tv_changeChannel=%s" % str(arg))
     return True, arg[0]
 
 def tv_skipChannels(arg):
     check_alive()
-    print("SERVICE> tv_skipChannels=",arg)
+    printLog("SERVICE> tv_skipChannels=%s" % str(arg))
     return True, arg[0]
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 5:
         print("SERVICE> Inicializacao invalida!")
         exit(1)
     print("SERVICE> PID %s" % sys.argv[1])
     check_alive()
 
 
-    tv = TV(myTv)
+    tv = TV(sys.argv[4])
     tv.powerState(tv_powerState)
     tv.setVolume(tv_setVolume)
     tv.adjustVolume(tv_setVolume)
@@ -141,5 +143,5 @@ if __name__ == '__main__':
 
     devices = [tv]
 
-    wrap = ClientWrapper(devices, appKey, secretKey)
+    wrap = ClientWrapper(devices, sys.argv[2], sys.argv[3])
     wrap.start()

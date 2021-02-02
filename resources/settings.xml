@@ -1,0 +1,15 @@
+
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+<category label="32000"><!--General-->
+
+    <setting label="32006" type="lsep"/><!--Keys-->
+    <setting label="32001" type="text" id="appkey" />
+    <setting label="32002" type="text" id="secretkey" />
+    <setting label="32003" type="text" id="myTv" />
+
+
+    <setting label="32007" type="lsep"/><!--Webpage settings-->
+    <setting id="startserver" type="action" label="32005" action="RunScript(service.kodi.alexa.tv,keyssetup)" option="close"/>
+</category>
+</settings>
