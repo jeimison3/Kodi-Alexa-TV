@@ -15,7 +15,7 @@ msgstr ""
 
 msgctxt "#32000"
 msgid "General"
-msgstr ""
+msgstr "Geral"
 
 msgctxt "#32001"
 msgid "appKey"
@@ -30,7 +30,7 @@ msgid "TV ID"
 msgstr ""
 
 msgctxt "#32005"
-msgid "Start setup ( http://(BOARD_IP):51494/alexatv )"
+msgid "Iniciar configuração ( http://(BOARD_IP):51494/alexatv )"
 msgstr ""
 
 msgctxt "#32006"
@@ -38,27 +38,27 @@ msgid "Keys ( https://sinric.pro/ )"
 msgstr ""
 
 msgctxt "#32007"
-msgid "Web Setup Interface"
+msgid "Interface de Configuração Web"
 msgstr ""
 
 
 
 msgctxt "#32010"
 msgid "Saved settings! Rebooting in 5 sec."
-msgstr ""
+msgstr "Configuracoes salvas! Reiniciando em 5 seg."
 
 msgctxt "#32011"
 msgid "Configure your SinricPro keys. Wait..."
-msgstr ""
+msgstr "Configure as Keys do SinricPro.\nAguarde..."
 
 msgctxt "#32012"
 msgid "Starting service."
-msgstr ""
+msgstr "Iniciando servico."
 
 msgctxt "#32013"
 msgid "Rebooting system."
-msgstr ""
+msgstr "Reiniciando sistema."
 
 msgctxt "#32014"
 msgid "Ready."
-msgstr ""
+msgstr "Pronto."

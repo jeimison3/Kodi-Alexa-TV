@@ -28,9 +28,22 @@ def mPrint(msg):
     else:
         print(msg)
 
+
 def Notificar(msg):
     if xbmc_path:
-        xbmc.executebuiltin("Notification(Kodi Alexa TV, %s)" % msg)
+        dialog = xbmcgui.Dialog()
+        dialog.notification('Kodi Alexa TV', msg, xbmcgui.NOTIFICATION_INFO, 5000)
+        # xbmc.executebuiltin("Notification(Kodi Alexa TV, %s)" % msg)
+
+def NotificarWarn(msg):
+    if xbmc_path:
+        dialog = xbmcgui.Dialog()
+        dialog.notification('Kodi Alexa TV', msg, xbmcgui.NOTIFICATION_WARNING, 5000)
+
+def NotificarErr(msg):
+    if xbmc_path:
+        dialog = xbmcgui.Dialog()
+        dialog.notification('Kodi Alexa TV', msg, xbmcgui.NOTIFICATION_ERROR, 5000)
 
 
 def lancar_servico(app, secret, tv):
@@ -42,6 +55,8 @@ def lancar_servico(app, secret, tv):
 
 # Addon settings parse:
 def get_setting(setting_id):
+    if not xbmc_path:
+        return ""
     addon = xbmcaddon.Addon()
     setting = addon.getSetting(setting_id)
     if setting == 'true':
@@ -52,7 +67,14 @@ def get_setting(setting_id):
         return setting
 
 def set_setting(key, value):
+    if not xbmc_path:
+        return
     return xbmcaddon.Addon().setSetting(key, value)
+
+def get_string(idStr):
+    if not xbmc_path:
+        return ""
+    return xbmcaddon.Addon().getLocalizedString(idStr)
 
 # Web settings page:
 class WebKeysSetupHandler(http.server.SimpleHTTPRequestHandler):
@@ -79,7 +101,7 @@ class WebKeysSetupHandler(http.server.SimpleHTTPRequestHandler):
             set_setting("appkey", appkey)
             set_setting("secretkey", secretkey)
             set_setting("myTv", tvKey)
-            Notificar("Configuracoes salvas! Reiniciando em 5s")
+            Notificar(get_string(32010)) # Saved settings, rebooting
             time.sleep(5)
             xbmc.executebuiltin("Reboot")
 
@@ -124,7 +146,7 @@ if __name__ == '__main__':
         secretkey = get_setting('secretkey')
         tvKey = get_setting('myTv')
         if len(appkey) == 0 or len(secretkey) == 0 or len(tvKey) == 0:
-            Notificar("Configure as chaves (Keys) do servico.\nAguarde...")
+            NotificarWarn(get_string(32011)) # Configure keys!
             time.sleep(4)
             processaInput(["keyssetup"])
             exit(-1)
@@ -134,7 +156,7 @@ if __name__ == '__main__':
         secretkey = secretKey
         tvKey = myTv
 
-    Notificar("Iniciando servico.")
+    Notificar(get_string(32012)) # Starting service
 
     # mPrint("Script atual: %s | CWD= %s | ARGS= %s\n" % (os.path.abspath(__file__), os.path.abspath(os.getcwd()), str(sys.argv[1:]) ))
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -152,7 +174,7 @@ if __name__ == '__main__':
             concluido = True
         except socket.error as msg:
             if contagemFalhas >= 3: # Falhas consecultivas, reinicia
-                Notificar("Reiniciando sistema.")
+                NotificarErr(get_string(32013)) # Reiniciando
                 time.sleep(3)
                 xbmc.executebuiltin("Reboot")
             contagemFalhas = contagemFalhas+1
@@ -161,7 +183,7 @@ if __name__ == '__main__':
 
 
     lancar_servico(appkey, secretkey, tvKey)
-    Notificar("Pronto.")
+    Notificar(get_string(32014)) # Pronto
     mPrint("ADDON> Servico pronto.")
 
     sock.listen(1)
